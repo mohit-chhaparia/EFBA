@@ -28,5 +28,5 @@ Every input must be a numeric, positive number. \cr \cr
 For more information on how this data is simulated, consult the corresponding paper at https://arxiv.org/abs/2102.01784
 }
 \examples{
-f3bS.sim(Ts = 2000, seed = 234)
+f3bS.sim(nb = 15, gsz = 20, Ts = 2000, seed = 234)
 }

@@ -56,7 +56,7 @@ fws.sim <- function(nb=15,gsz=20,Ts,seed){
 #' @importFrom stats fft
 #' @importFrom stats rnorm
 #' @examples
-#' f3bL.sim(Ts = 2000, seed = 234)
+#' f3bL.sim(nb = 15, gsz = 20, Ts = 2000, seed = 234)
 #' @details
 #' If no values for nb or gsz are selected, the function will utilize the aforementioned default values of 15 and 20, respectively. \cr \cr
 #' Ts and seed need to be provided every time the function is run. \cr \cr
@@ -132,7 +132,7 @@ f3bL.sim <- function(nb,gsz,Ts,seed){
 #' @importFrom stats fft
 #' @importFrom stats rnorm
 #' @examples
-#' f3bS.sim(Ts = 2000, seed = 234)
+#' f3bS.sim(nb = 15, gsz = 20, Ts = 2000, seed = 234)
 #' @details
 #' If no values for nb or gsz are selected, the function will utilize the aforementioned default values of 15 and 20, respectively. \cr \cr
 #' Ts and seed need to be provided every time the function is run. \cr \cr
