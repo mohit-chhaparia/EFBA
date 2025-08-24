@@ -1,0 +1,8 @@
+^.*\.Rproj$
+^\.Rproj\.user$
+^packageManagementScript\.R$
+^LICENSE\.md$
+^\.github$
+^README\.Rmd$
+^mEBA_functions\.R$
+^mEBA_Rfunctions\.R$
