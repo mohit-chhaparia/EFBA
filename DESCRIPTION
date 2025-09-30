@@ -44,6 +44,7 @@ Depends:
     usethis,
     RcppArmadillo
 RoxygenNote: 7.3.2
+SystemRequirements: OpenMP
 Suggests: 
     compositions,
     fossil,

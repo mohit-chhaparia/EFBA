@@ -4,9 +4,8 @@
 
 #define ARMA_64BIT_WORD 1
 #define _USE_MATH_DEFINES
-#include <math.h>
 #include <omp.h>
-
+#include <math.h>
 #include <string>
 #include <sstream>
 #include <cmath>
