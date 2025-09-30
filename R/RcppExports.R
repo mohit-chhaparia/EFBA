@@ -3,16 +3,16 @@
 
 #' @export
 msboot <- function(nrep, x, Wsel, stdz, ncore) {
-    .Call('_EFBA_msboot', PACKAGE = 'EFBA', nrep, x, Wsel, stdz, ncore)
+    .Call(`_EFBA_msboot`, nrep, x, Wsel, stdz, ncore)
 }
 
 tsbootH0 <- function(x, rndraws, ncore) {
-    .Call('_EFBA_tsbootH0', PACKAGE = 'EFBA', x, rndraws, ncore)
+    .Call(`_EFBA_tsbootH0`, x, rndraws, ncore)
 }
 
 #' @export
 fhat_lp <- function(X, N, stdz) {
-    .Call('_EFBA_fhat_lp', PACKAGE = 'EFBA', X, N, stdz)
+    .Call(`_EFBA_fhat_lp`, X, N, stdz)
 }
 
 #' Generate Multitaper Estimator of Power Spectrum for Functional Data
@@ -47,23 +47,23 @@ fhat_lp <- function(X, N, stdz) {
 #' For more information on how this data is simulated, consult the corresponding paper at https://arxiv.org/abs/2102.01784
 #' @export
 fhat_pmt <- function(X, N, K, Rsel, stdz) {
-    .Call('_EFBA_fhat_pmt', PACKAGE = 'EFBA', X, N, K, Rsel, stdz)
+    .Call(`_EFBA_fhat_pmt`, X, N, K, Rsel, stdz)
 }
 
 #' @export
 ghat <- function(fhat_pmt) {
-    .Call('_EFBA_ghat', PACKAGE = 'EFBA', fhat_pmt)
+    .Call(`_EFBA_ghat`, fhat_pmt)
 }
 
 Qpval <- function(fhat_pmt, K, ndraw, Qts, Qint, blockdiag) {
-    .Call('_EFBA_Qpval', PACKAGE = 'EFBA', fhat_pmt, K, ndraw, Qts, Qint, blockdiag)
+    .Call(`_EFBA_Qpval`, fhat_pmt, K, ndraw, Qts, Qint, blockdiag)
 }
 
 fEBA <- function(fhat_pmt, ghat, K, ndraw, alpha, blockdiag) {
-    .Call('_EFBA_fEBA', PACKAGE = 'EFBA', fhat_pmt, ghat, K, ndraw, alpha, blockdiag)
+    .Call(`_EFBA_fEBA`, fhat_pmt, ghat, K, ndraw, alpha, blockdiag)
 }
 
 rcpp_hello <- function() {
-    .Call('_EFBA_rcpp_hello', PACKAGE = 'EFBA')
+    .Call(`_EFBA_rcpp_hello`)
 }
 
