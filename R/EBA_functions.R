@@ -87,13 +87,13 @@ mtspc <- function(X,T,N,B,K){
 ###function to find covariance matrix of demeaned spectral estimates
 #' Title
 #'
-#' @param X
-#' @param B
-#' @param N
-#' @param K
+#' @param X ADD DESCRIPTION
+#' @param B ADD DESCRIPTION
+#' @param N ADD DESCRIPTION
+#' @param K ADD DESCRIPTION
 #' @param tapers
 #'
-#' @return
+#' @return covg
 #' @noRd
 #' @importFrom stats mvfft
 #' @importFrom stats toeplitz
@@ -120,10 +120,10 @@ gcov <- function(X,B,N,K,tapers){
 ###function to partition series into segments of size N
 #' Title
 #'
-#' @param X
-#' @param N
+#' @param X ADD DESCRIPTION
+#' @param N ADD DESCRIPTION
 #'
-#' @return
+#' @return Xmat
 #' @noRd
 #'
 #' @examples used to partition series into segments of size N in eba.search
@@ -149,14 +149,14 @@ partN <- function(X,N){
 ###function to find frequency partition point using Hochberg step up rule
 #' Title
 #'
-#' @param X.dm
-#' @param f
-#' @param startf
-#' @param endf
-#' @param covg
-#' @param alpha
+#' @param X.dm ADD DESCRIPTION
+#' @param f ADD DESCRIPTION
+#' @param startf ADD DESCRIPTION
+#' @param endf ADD DESCRIPTION
+#' @param covg ADD DESCRIPTION
+#' @param alpha ADD DESCRIPTION
 #'
-#' @return
+#' @return list.out
 #' @noRd
 #'
 #' @examples used to identify changepoint candidates in eba.search
@@ -220,12 +220,12 @@ eba.b <- function(X.dm,f,startf,endf,covg,alpha) {
 ###function to test for flat spectrum through time (i.e. frequency component contribution same across time)
 #' Title
 #'
-#' @param f
-#' @param partfinal
-#' @param ghat
-#' @param covg
+#' @param f ADD DESCRIPTION
+#' @param partfinal ADD DESCRIPTION
+#' @param ghat ADD DESCRIPTION
+#' @param covg ADD DESCRIPTION
 #'
-#' @return
+#' @return out
 #' @noRd
 #'
 #' @examples used in eba.search to get tests for if spectra have any time varying behavior. Low p value indicates low time varying behavior.
