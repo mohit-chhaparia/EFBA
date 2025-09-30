@@ -1,17 +1,18 @@
 # Workflow derived from https://github.com/r-lib/actions/tree/v2/examples
 # Need help debugging build failures? Start at https://github.com/r-lib/actions#where-to-find-help
+# R package CI with OpenMP enabled on all OSs (brew + llvm/libomp on macOS)
+
+name: R-CMD-check
+
 on:
   push:
     branches: [main, master]
   pull_request:
     branches: [main, master]
 
-name: R-CMD-check
-
 jobs:
   R-CMD-check:
     runs-on: ${{ matrix.config.os }}
-
     name: ${{ matrix.config.os }} (${{ matrix.config.r }})
 
     strategy:
@@ -20,16 +21,16 @@ jobs:
         config:
           - {os: macos-latest,   r: 'release'}
           - {os: windows-latest, r: 'release'}
-          - {os: ubuntu-latest,   r: 'devel', http-user-agent: 'release'}
-          - {os: ubuntu-latest,   r: 'release'}
-          - {os: ubuntu-latest,   r: 'oldrel-1'}
+          - {os: ubuntu-latest,  r: 'devel',   http-user-agent: 'release'}
+          - {os: ubuntu-latest,  r: 'release'}
+          - {os: ubuntu-latest,  r: 'oldrel-1'}
 
     env:
       GITHUB_PAT: ${{ secrets.GITHUB_TOKEN }}
       R_KEEP_PKG_SOURCE: yes
 
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v4
 
       - uses: r-lib/actions/setup-pandoc@v2
 
@@ -39,13 +40,35 @@ jobs:
           http-user-agent: ${{ matrix.config.http-user-agent }}
           use-public-rspm: true
 
-      - name: Install OpenMP on macOS
-        if: matrix.config.os == 'macos-latest'
-        run: brew install libomp
+      - name: Install OpenMP toolchain (macOS)
+        if: runner.os == 'macOS'
+        shell: bash
+        run: |
+          brew update
+          brew install llvm libomp
+          LLVM=$(brew --prefix llvm)
+          OMP=$(brew --prefix libomp)
+
+          echo "${LLVM}/bin" >> $GITHUB_PATH
+
+          mkdir -p ~/.R
+          cat > ~/.R/Makevars <<'EOF'
+
+          CC=$(shell brew --prefix llvm)/bin/clang
+          CXX=$(shell brew --prefix llvm)/bin/clang++
+          CXX11=$(shell brew --prefix llvm)/bin/clang++
+          CXX14=$(shell brew --prefix llvm)/bin/clang++
+          CXX17=$(shell brew --prefix llvm)/bin/clang++
+          CXX20=$(shell brew --prefix llvm)/bin/clang++
+
+          CPPFLAGS += -I$(shell brew --prefix libomp)/include
+          CXXFLAGS += -I$(shell brew --prefix libomp)/include -Xpreprocessor -fopenmp
+          LDFLAGS  += -L$(shell brew --prefix libomp)/lib -lomp
+          EOF
 
       - uses: r-lib/actions/setup-r-dependencies@v2
         with:
-          extra-packages: any::rcmdcheck
+          extra-packages: any::devtools, any::rcpp, any::RcppArmadillo, any::testthat, any::covr, any::rcmdcheck
           needs: check
 
       - uses: r-lib/actions/check-r-package@v2
