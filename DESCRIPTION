@@ -26,7 +26,10 @@ Imports:
     shinyjs,
     plotly,
     signal,
-    RcppArmadillo
+    RcppArmadillo,
+    utils,
+    grDevices,
+    graphics
 Depends:
     fields,
     momentchi2,
