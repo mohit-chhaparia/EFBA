@@ -56,7 +56,7 @@ K=max(1,floor(bw*(N+1)-1)); #number of tapers for multitaper spectral estimator
 std=FALSE; #standardize variance for points in functional domain (TRUE) or not (FALSE)
 freq=seq(from=0,by=1/N,length.out=floor(N/2)+1); #Fourier frequencies
 Rsel=4; #number of points in functional domain used for test statistics
-pse=fhat(X,N,K,Rsel,std);
+pse=fhat_pmt(X,N,K,Rsel,std);
 cmpnt="1-1"; #select component to view
 dimnames(pse) <- list(freq,apply(expand.grid(1:Rsel,1:Rsel),1,paste,collapse = "-"),1:B);
 image.plot(x=(1:B)*(Ts/B),y=as.numeric(rownames(pse)),z=t(Re(pse[,cmpnt,])),
