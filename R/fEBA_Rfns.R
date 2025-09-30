@@ -70,7 +70,7 @@ f3bL.sim <- function(nb,gsz,Ts,seed){
   seed2<-sample(1:600,3);
 
   #low frequencies
-  X <- fws.sim(nb=nb,gsz=gsz,T=Ts,seed=seed2[1]);
+  X <- fws.sim(nb=nb,gsz=gsz,Ts=Ts,seed=seed2[1]);
   Ts <- nrow(X);
   Fs <- floor(Ts/2)+1;
   f <- seq(from=0,by=1/Ts,length.out=floor(Ts/2)+1);
@@ -83,7 +83,7 @@ f3bL.sim <- function(nb,gsz,Ts,seed){
   # fwn1.lf <- fwn1.lf/sd(fwn1.lf);
 
   #middle frequencies
-  X <- fws.sim(nb=nb,gsz=gsz,T=Ts,seed=seed2[2]);
+  X <- fws.sim(nb=nb,gsz=gsz,Ts=Ts,seed=seed2[2]);
   Ts <- nrow(X);
   Fs <- floor(Ts/2)+1;
   f <- seq(from=0,by=1/Ts,length.out=floor(Ts/2)+1);
@@ -96,7 +96,7 @@ f3bL.sim <- function(nb,gsz,Ts,seed){
   # fwn1.mf <- fwn1.mf/sd(fwn1.mf);
 
   #high frequencies
-  X <- fws.sim(nb=nb,gsz=gsz,T=Ts,seed=seed2[3]);
+  X <- fws.sim(nb=nb,gsz=gsz,Ts=Ts,seed=seed2[3]);
   Ts <- nrow(X);
   Fs <- floor(Ts/2)+1;
   f <- seq(from=0,by=1/Ts,length.out=floor(Ts/2)+1);
@@ -146,7 +146,7 @@ f3bS.sim <- function(nb,gsz,Ts,seed){
   seed2<-sample(1:600,4);
 
   #low frequencies
-  X <- fws.sim(nb=nb,gsz=gsz,T=Ts,seed=seed2[1]);
+  X <- fws.sim(nb=nb,gsz=gsz,Ts=Ts,seed=seed2[1]);
   Ts <- nrow(X);
   Fs <- floor(Ts/2)+1;
   f <- seq(from=0,by=1/Ts,length.out=floor(Ts/2)+1);
@@ -159,7 +159,7 @@ f3bS.sim <- function(nb,gsz,Ts,seed){
   # fwn1.lf <- fwn1.lf/sd(fwn1.lf);
 
   #middle frequencies
-  X <- fws.sim(nb=nb,gsz=gsz,T=Ts,seed=seed2[2]);
+  X <- fws.sim(nb=nb,gsz=gsz,Ts=Ts,seed=seed2[2]);
   Ts <- nrow(X);
   Fs <- floor(Ts/2)+1;
   f <- seq(from=0,by=1/Ts,length.out=floor(Ts/2)+1);
@@ -172,7 +172,7 @@ f3bS.sim <- function(nb,gsz,Ts,seed){
   # fwn1.mf <- fwn1.mf/sd(fwn1.mf);
 
   #high frequencies
-  X <- fws.sim(nb=nb,gsz=gsz,T=Ts,seed=seed2[3]);
+  X <- fws.sim(nb=nb,gsz=gsz,Ts=Ts,seed=seed2[3]);
   Ts <- nrow(X);
   Fs <- floor(Ts/2)+1;
   f <- seq(from=0,by=1/Ts,length.out=floor(Ts/2)+1);
@@ -189,7 +189,7 @@ f3bS.sim <- function(nb,gsz,Ts,seed){
   coef1 <- sqrt(9)*sin(2*pi*seq(0,1,length=Ts));
   coef2 <- sqrt(9)*cos(2*pi*seq(0,1,length=Ts));
   coef3 <- sqrt(9)*cos(4*pi*seq(0,1,length=Ts));
-  X.3bS <- coef1*fwn1.lf*sqrt(.3) + coef2*fwn1.mf*sqrt(.4) + coef3*fwn1.hf*sqrt(.3)+fws.sim(nb=nb,gsz=gsz,T=Ts,seed=seed2[4]);
+  X.3bS <- coef1*fwn1.lf*sqrt(.3) + coef2*fwn1.mf*sqrt(.4) + coef3*fwn1.hf*sqrt(.3)+fws.sim(nb=nb,gsz=gsz,Ts=Ts,seed=seed2[4]);
 
   return(X.3bS)
 }
