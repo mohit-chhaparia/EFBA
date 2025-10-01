@@ -16,5 +16,5 @@ This application serves to provide a way to find and analyze frequency bands in 
 There is a vignette entitled "ShinyAppUsage" that is included with this package, which goes into much greater detail about how to use and understand the application.
 }
 \examples{
-launchApp()
+# launchApp()
 }

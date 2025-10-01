@@ -1,4 +1,5 @@
-#function to linearly detrend and standardize time series
+# function to linearly detrend and standardize time series
+#' @noRd
 detrend <- function(vec,std){
   #remove linear trend for each interval
   xmat <- cbind(matrix(1,length(vec),1),seq(1,length(vec),length=length(vec)));
@@ -17,6 +18,7 @@ detrend <- function(vec,std){
 #ggplot settings
 #' @importFrom ggplot2 theme_gray
 #' @export
+#' @noRd
 hw <- function(){
   theme_gray()+ theme(
   plot.title=element_text(hjust=0.5),
@@ -38,6 +40,7 @@ hw <- function(){
 #' @export
 #' @importFrom signal butter
 #' @importFrom signal filter
+#' @noRd
 preprocess <- function(sgnl,dsfrq,channels){
 
   out <- sgnl[seq(1,nrow(sgnl),by=512/dsfrq),] # downsample to 64Hz

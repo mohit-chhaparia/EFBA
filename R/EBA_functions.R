@@ -26,7 +26,7 @@
 #' @importFrom stats sd
 #'
 #' @examples
-#' detrend(vec = eba.simdata(T= 50000)$wn,std = FALSE)
+#' detrend(vec = eba.simdata(T= 500)$wn,std = FALSE)
 detrend <- function(vec,std){
   #remove linear trend for each interval
   xmat <- cbind(matrix(1,length(vec),1),seq(1,length(vec),length=length(vec)));
@@ -292,7 +292,7 @@ eba.flat <- function(f,partfinal,ghat,covg){
 #' @export
 #' @importFrom momentchi2 sw
 #' @examples
-#' eba.search(X = eba.simdata(T= 50000)$wn, N = 500, K = 15, std = FALSE, alpha = .05)
+#' eba.search(X = eba.simdata(T= 500)$wn, N = 50, K = 10, std = FALSE, alpha = .05)
 #' @details
 #' How to run the EBA with the FRESH statistic \cr  \cr
 #' 'X' is a vector containing a realization of the time series process you wish to analyze \cr  \cr
@@ -441,7 +441,7 @@ eba.search <- function(X,N,K,std,alpha){
 #' @importFrom stats fft
 #' @importFrom stats rnorm
 #' @examples
-#' eba.simdata(T=50000)
+#' eba.simdata(T=500)
 #' @details
 #' Increasing T will increase the length of the time series.Bellow are brief explanations of each of the returned time series. \cr \cr
 #' wn: white noise, random normal distribution with mean of 0 and var = 1 \cr \cr

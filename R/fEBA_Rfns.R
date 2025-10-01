@@ -13,7 +13,7 @@
 #' @importFrom fda eval.basis
 #' @importFrom stats rnorm
 #' @examples
-#' fws.sim(Ts = 2000, seed = 234)
+#' fws.sim(Ts = 200, seed = 234)
 #' @details
 #' If no values for nb or gsz are selected, the function will utilize the aforementioned default values of 15 and 20, respectively. \cr \cr
 #' Ts and seed need to be provided every time the function is run. \cr \cr
@@ -56,7 +56,7 @@ fws.sim <- function(nb=15,gsz=20,Ts,seed){
 #' @importFrom stats fft
 #' @importFrom stats rnorm
 #' @examples
-#' f3bL.sim(nb = 15, gsz = 20, Ts = 2000, seed = 234)
+#' f3bL.sim(nb = 15, gsz = 20, Ts = 200, seed = 234)
 #' @details
 #' If no values for nb or gsz are selected, the function will utilize the aforementioned default values of 15 and 20, respectively. \cr \cr
 #' Ts and seed need to be provided every time the function is run. \cr \cr
@@ -132,7 +132,7 @@ f3bL.sim <- function(nb,gsz,Ts,seed){
 #' @importFrom stats fft
 #' @importFrom stats rnorm
 #' @examples
-#' f3bS.sim(nb = 15, gsz = 20, Ts = 2000, seed = 234)
+#' f3bS.sim(nb = 15, gsz = 20, Ts = 200, seed = 234)
 #' @details
 #' If no values for nb or gsz are selected, the function will utilize the aforementioned default values of 15 and 20, respectively. \cr \cr
 #' Ts and seed need to be provided every time the function is run. \cr \cr
@@ -221,7 +221,7 @@ f3bS.sim <- function(nb,gsz,Ts,seed){
 #' @examples
 #' nb=15; #number of basis functions used to generate white noise
 #' R=5; #number of points in functional domain
-#' Ts=2000; #length of time series
+#' Ts=200; #length of time series
 #' seed=234; #seed for reproducibility
 #' X=fws.sim(nb=nb,gsz=R,Ts=Ts,seed=seed);
 #' B=5; #number of time blocks
@@ -243,7 +243,7 @@ f3bS.sim <- function(nb,gsz,Ts,seed){
 
 #input parameters
 #' set.seed(47)
-#' ndraw=100000; #number of draws from Gaussian process for approximating p-values
+#' ndraw=10000; #number of draws from Gaussian process for approximating p-values
 #' blockdiag=TRUE; #use block diagonal covariance matrix approximation
 #' dcap=40; #max number of frequencies tested in a given pass
 #' alpha=0.05/ceiling((1-2*bw/0.5)*(floor(N/2)+1)/dcap); #alpha with Bonferroni correction

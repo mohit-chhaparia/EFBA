@@ -22,5 +22,5 @@ bl: linear example used in paper \cr \cr
 bs: sinusoidal example used in paper \cr \cr
 }
 \examples{
-eba.simdata(T=50000)
+eba.simdata(T=500)
 }

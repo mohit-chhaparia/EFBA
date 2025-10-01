@@ -6,7 +6,7 @@
 #' @export
 #' @importFrom shinyjs useShinyjs
 #' @examples
-#' launchApp()
+#' # launchApp()
 #' @details
 #' There is a vignette entitled "ShinyAppUsage" that is included with this package, which goes into much greater detail about how to use and understand the application.
 
