@@ -5,7 +5,7 @@
 
 <!-- badges: start -->
 
-[![R-CMD-check](https://github.com/mattByrom-tamu/EFBA/actions/workflows/R-CMD-check.yaml/badge.svg)](https://github.com/mattByrom-tamu/EFBA/actions/workflows/R-CMD-check.yaml)
+[![R-CMD-check](https://github.com/mohit-chhaparia/EFBA/actions/workflows/R-CMD-check.yaml/badge.svg)](https://github.com/mohit-chhaparia/EFBA/actions/workflows/R-CMD-check.yaml)
 <!-- badges: end -->
 
 The R package “EFBA” provides functions for implementing empirical band
