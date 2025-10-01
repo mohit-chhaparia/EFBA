@@ -2,7 +2,7 @@
 title: "fEBA"
 output: rmarkdown::html_vignette
 vignette: >
-  %\VignetteIndexEntry{FEBA}
+  %\VignetteIndexEntry{fEBA}
   %\VignetteEngine{knitr::rmarkdown}
   %\VignetteEncoding{UTF-8}
 ---
@@ -10,7 +10,8 @@ vignette: >
 ```{r, include = FALSE}
 knitr::opts_chunk$set(
   collapse = TRUE,
-  comment = "#>"
+  comment = "#>",
+  cache = TRUE
 )
 ```
 
@@ -29,7 +30,7 @@ library(viridis)
 #input parameters
 nb=15; #number of basis functions used to generate white noise
 R=5; #number of points in functional domain
-Ts=2000; #length of time series
+Ts=200; #length of time series
 seed=234; #seed for reproducibility
 
 X=fws.sim(nb=nb,gsz=R,Ts=Ts,seed=seed);
@@ -55,7 +56,7 @@ image.plot(x=(1:B)*(Ts/B),y=as.numeric(rownames(pse)),z=t(Re(pse[,cmpnt,])),
 
 #input parameters
 set.seed(47)
-ndraw=100000; #number of draws from Gaussian process for approximating p-values
+ndraw=10000; #number of draws from Gaussian process for approximating p-values
 blockdiag=TRUE; #use block diagonal covariance matrix approximation
 dcap=40; #max number of frequencies tested in a given pass 
 alpha=0.05/ceiling((1-2*bw/0.5)*(floor(N/2)+1)/dcap); #alpha with Bonferroni correction
@@ -88,7 +89,7 @@ plot(tmp[,1],tmp[,3],
 #input parameters
 nb=15; #number of basis functions used to generate white noise
 R=5; #number of points in functional domain
-Ts=2000; #length of time series
+Ts=200; #length of time series
 seed=634; #seed for reproducibility
 
 X=f3bL.sim(nb=nb,gsz=R,Ts=Ts,seed=seed);
@@ -113,7 +114,7 @@ image.plot(x=(1:B)*(Ts/B),y=as.numeric(rownames(pse)),z=t(Re(pse[,cmpnt,])),
 
 #input parameters
 set.seed(734)
-ndraw=100000; #number of draws from Gaussian process for approximating p-values
+ndraw=10000; #number of draws from Gaussian process for approximating p-values
 blockdiag=TRUE; #use block diagonal covariance matrix approximation
 dcap=40; #max number of frequencies tested in a given pass 
 alpha=0.05/ceiling((1-2*bw/0.5)*(floor(N/2)+1)/dcap); #alpha with Bonferroni correction
@@ -146,7 +147,7 @@ plot(tmp[,1],tmp[,3],
 #input parameters
 nb=15; #number of basis functions used to generate white noise
 R=5; #number of points in functional domain
-Ts=4000; #length of time series
+Ts=200; #length of time series
 seed=123; #seed for reproducibility
 
 X=f3bS.sim(nb=nb,gsz=R,Ts=Ts,seed=seed);
@@ -172,7 +173,7 @@ image.plot(x=(1:B)*(Ts/B),y=as.numeric(rownames(pse)),z=t(Re(pse[,cmpnt,])),
 
 #input parameters
 set.seed(435)
-ndraw=100000; #number of draws from Gaussian process for approximating p-values
+ndraw=10000; #number of draws from Gaussian process for approximating p-values
 blockdiag=TRUE; #use block diagonal covariance matrix approximation
 dcap=40; #max number of frequencies tested in a given pass 
 alpha=0.05/ceiling((1-2*bw/0.5)*(floor(N/2)+1)/dcap); #alpha with Bonferroni correction

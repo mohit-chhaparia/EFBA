@@ -10,7 +10,8 @@ vignette: >
 ```{r, include = FALSE}
 knitr::opts_chunk$set(
   collapse = TRUE,
-  comment = "#>"
+  comment = "#>",
+  cache = TRUE
 )
 ```
 
@@ -24,13 +25,13 @@ library(fields)
 
 ###Simulate data for all simulated data settings described in paper
 set.seed(823819); #if you change the seed, you will get different results
-T <- 50000; #total length of time series 
+T <- 500; #total length of time series 
 X <- eba.simdata(T=T);
 
 ###Run search algorithm using FRESH statistic
 ##Input parameters
-N <- 500; #number of observations per approximately stationary block
-K <- 15; #number of tapers to use in multitaper spectral estimator
+N <- 50; #number of observations per approximately stationary block
+K <- 10; #number of tapers to use in multitaper spectral estimator
 alpha <- 0.05; #significance level to use for testing partition points using FRESH statistic
 std <- FALSE; #should the variance of each stationary block be set to one across all blocks? (TRUE or FALSE)
 
