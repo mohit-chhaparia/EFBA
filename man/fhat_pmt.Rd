@@ -32,7 +32,7 @@ For more information on how this data is simulated, consult the corresponding pa
 \examples{
 nb=15; #number of basis functions used to generate white noise
 R=5; #number of points in functional domain
-Ts=2000; #length of time series
+Ts=200; #length of time series
 seed=234; #seed for reproducibility
 X=fws.sim(nb=nb,gsz=R,Ts=Ts,seed=seed);
 ##estimate and visualize power spectrum estimates for specific components
