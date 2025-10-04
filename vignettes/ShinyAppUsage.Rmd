@@ -7,7 +7,7 @@ vignette: >
   %\VignetteEncoding{UTF-8}
 ---
 
-```{r setup, include=FALSE}
+```{r setup , include = FALSE}
 knitr::opts_chunk$set(echo = TRUE , cache = TRUE)
 ```
 
@@ -15,14 +15,14 @@ This vignette serves to give a detailed explanation of how to use and interpret 
 
 In order to open the application, simply run the below line of code
 
-```{r, eval=FALSE}
+```{r , eval = FALSE}
 EFBA::launchApp()
 ```
 
 
 # Introduction
 
-```{r, echo=FALSE, fig.cap="Screenshot of Application upon Opening", fig.topcaption=TRUE, out.width = '90%'}
+```{r , echo = FALSE , fig.cap = "Screenshot of Application upon Opening" , fig.topcaption = TRUE , out.width = '90%'}
 knitr::include_graphics("http://github.com/dylanward01/EFBA/blob/ed85d64bd282c15e649273c32a454ae4210d90b8/man/figures/BlankShinyApp.png?raw=true")
 ```
 
@@ -85,7 +85,7 @@ Note: For Functional/Multivariate data, while the algorithm is running, a messag
 # Simulation Setting
 
 
-```{r, echo=FALSE, fig.cap="Screenshot of Simulation Setting side upon Opening", out.width = '90%', fig.topcaption=TRUE}
+```{r , echo = FALSE , fig.cap = "Screenshot of Simulation Setting side upon Opening" , out.width = '90%' , fig.topcaption = TRUE}
 knitr::include_graphics("https://github.com/dylanward01/EFBA/blob/46f9ce4de1c2c97465df93bf3b6b4a95b2fad0aa/man/figures/SimSettingDefault.png?raw=true")
 ```
 
