@@ -7,12 +7,8 @@ vignette: >
   %\VignetteEncoding{UTF-8}
 ---
 
-```{r, include = FALSE}
-knitr::opts_chunk$set(
-  collapse = TRUE,
-  comment = "#>",
-  cache = TRUE
-)
+```{r , include = FALSE}
+knitr::opts_chunk$set(collapse = TRUE , comment = "#>" , cache = TRUE)
 ```
 
 ["Empirical Frequency Band Analysis of Nonstationary Time Series." Bruce, Tang, Hall, Krafty (2020)](https://www.ncbi.nlm.nih.gov/pmc/articles/PMC8186526/)
@@ -21,69 +17,67 @@ Description: Simulates data corresponding to three time series processes describ
 
 ```{r EBA}
 library(EFBA)
-# library(fields)
 
-###Simulate data for all simulated data settings described in paper
-set.seed(823819); #if you change the seed, you will get different results
-T <- 500; #total length of time series 
-X <- eba.simdata(T=T);
+# Simulate data for all simulated data settings described in paper
+set.seed(823819) # If you change the seed, you will get different results
+T <- 500 # Total length of time series 
+X <- eba.simdata(T = T)
 
-###Run search algorithm using FRESH statistic
-##Input parameters
-N <- 50; #number of observations per approximately stationary block
-K <- 10; #number of tapers to use in multitaper spectral estimator
-alpha <- 0.05; #significance level to use for testing partition points using FRESH statistic
-std <- FALSE; #should the variance of each stationary block be set to one across all blocks? (TRUE or FALSE)
+# Run search algorithm using FRESH statistic
+# Input parameters
+N <- 50 # Number of observations per approximately stationary block
+K <- 10 # Number of tapers to use in multitaper spectral estimator
+alpha <- 0.05 # Significance level to use for testing partition points using FRESH statistic
+std <- FALSE # Should the variance of each stationary block be set to one across all blocks? (TRUE or FALSE)
 
-##Call search algorithm using FRESH statistic
-ebaout.wn <- eba.search(X=X$wn,N=N,K=K,std=std,alpha=alpha);
-ebaout.bL <- eba.search(X=X$bL,N=N,K=K,std=std,alpha=alpha);
-ebaout.bS <- eba.search(X=X$bS,N=N,K=K,std=std,alpha=alpha);
+# Call search algorithm using FRESH statistic
+ebaout.wn <- eba.search(X = X$wn , N = N , K = K , std = std , alpha = alpha)
+ebaout.bL <- eba.search(X = X$bL , N = N , K = K , std = std , alpha = alpha)
+ebaout.bS <- eba.search(X = X$bS , N = N , K = K , std = std , alpha = alpha)
 
-##See final partition of frequency space
-ebaout.wn$part.final; #one single band
-ebaout.bL$part.final; #three bands estimated
-ebaout.bS$part.final; #three bands estimated
+# See final partition of frequency space
+ebaout.wn$part.final # One single band
+ebaout.bL$part.final # Three bands estimated
+ebaout.bS$part.final # Three bands estimated
 
-##Check p-values for each tested partition point
-ebaout.wn$log;
-#first partition point tested insignificant, so algorithm stopped
+# Check p-values for each tested partition point
+ebaout.wn$log
+# First partition point tested insignificant, so algorithm stopped
 
-ebaout.bL$log;
-#3 partition points tested in total, 2 determined to be significant
+ebaout.bL$log
+# 3 partition points tested in total, 2 determined to be significant
 
-ebaout.bS$log;
-#3 partition points tested in total, 2 determined to be significant
+ebaout.bS$log
+# 3 partition points tested in total, 2 determined to be significant
 
-##Plot multitaper spectral estimates along with estimated frequency partition points
+# Plot multitaper spectral estimates along with estimated frequency partition points
 # Multitaper Spectrogram for White Noise
-image.plot(x=ebaout.wn$mtspec$t,y=ebaout.wn$mtspec$f,z=t(ebaout.wn$mtspec$mtspec), 
-           axes = TRUE, col = inferno(256),zlim=c(0,10), 
-           xlab='Time',ylab='Hz',xaxs="i"); 
-abline(h=ebaout.wn$part.final[c(-1,-length(ebaout.wn$part.final))],col='green');
+image.plot(x = ebaout.wn$mtspec$t , y = ebaout.wn$mtspec$f , z = t(ebaout.wn$mtspec$mtspec) , 
+           axes = TRUE , col = inferno(256) , zlim = c(0 , 10) , 
+           xlab = 'Time' , ylab = 'Hz' , xaxs = "i") 
+abline(h = ebaout.wn$part.final[c(-1 , -length(ebaout.wn$part.final))] , col = 'green')
 
-# linear
-image.plot(x=ebaout.bL$mtspec$t,y=ebaout.bL$mtspec$f,z=t(ebaout.bL$mtspec$mtspec), 
-           axes = TRUE, col = inferno(256), zlim=c(0,10), 
-           xlab='Time',ylab='Hz',xaxs="i"); 
-abline(h=ebaout.bL$part.final[c(-1,-length(ebaout.bL$part.final))],col='green');
+# Linear
+image.plot(x = ebaout.bL$mtspec$t , y = ebaout.bL$mtspec$f , z = t(ebaout.bL$mtspec$mtspec) , 
+           axes = TRUE , col = inferno(256) , zlim=c(0 , 10) , 
+           xlab = 'Time' , ylab = 'Hz' , xaxs = "i") 
+abline(h = ebaout.bL$part.final[c(-1 , -length(ebaout.bL$part.final))] , col = 'green')
+
 # Sinusoidal
-image.plot(x=ebaout.bS$mtspec$t,y=ebaout.bS$mtspec$f,z=t(ebaout.bS$mtspec$mtspec), 
-           axes = TRUE, col = inferno(256), zlim=c(0,10), 
-           xlab='Time',ylab='Hz',xaxs="i"); 
-abline(h=ebaout.bS$part.final[c(-1,-length(ebaout.bS$part.final))],col='green');
+image.plot(x = ebaout.bS$mtspec$t , y = ebaout.bS$mtspec$f , z = t(ebaout.bS$mtspec$mtspec) , 
+           axes = TRUE , col = inferno(256) , zlim=c(0 , 10) , 
+           xlab = 'Time' , ylab = 'Hz' , xaxs = "i") 
+abline(h = ebaout.bS$part.final[c(-1 , -length(ebaout.bS$part.final))] , col = 'green')
 
-##Check p-values for flat spectrum for each segment
-ebaout.wn$flat; 
-#p-value 0.47 fails to reject hypothesis of flat spectrum
+# Check p-values for flat spectrum for each segment
+ebaout.wn$flat
+# p-value 0.47 fails to reject hypothesis of flat spectrum
 
 ebaout.bL$flat 
-#p-value for band (0.150,0.344] fails to reject hypothesis of flat spectrum
-#p-values for other frequency bands reject flat spectrum hypothesis
+# p-value for band (0.150,0.344] fails to reject hypothesis of flat spectrum
+# p-values for other frequency bands reject flat spectrum hypothesis
 
 ebaout.bS$flat 
-#p-values for all frequency bands reject flat spectrum hypothesis
-
-
+# p-values for all frequency bands reject flat spectrum hypothesis
 
 ```
