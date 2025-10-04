@@ -7,6 +7,8 @@
 \title{EFBA: Empirical Frequency Band Analysis}
 \description{
 Tools for empirical frequency-band analysis of non-stationary time series.
+These imports make base plotting and IO functions visible to the package,
+removing "no visible global function definition" NOTES.
 }
 \author{
 \strong{Maintainer}: Matt Byrom \email{matthew.james.byrom@tamu.edu}
@@ -19,7 +21,7 @@ Authors:
 Other contributors:
 \itemize{
   \item Dylan Ward [contributor]
-  \item Mohit Chhaparia [contributor]
+  \item Mohit Chhaparia \email{mohit_chhaparia@tamu.edu} [contributor]
 }
 
 }
