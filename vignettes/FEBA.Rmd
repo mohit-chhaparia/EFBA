@@ -17,9 +17,9 @@ knitr::opts_chunk$set(
 
 ```{r setup}
 library(EFBA)
-library(fda)
-library(fields)
-library(viridis)
+# library(fda)
+# library(fields)
+# library(viridis)
 
 ######################################
 ## Setting 1: Functional White Noise

@@ -21,7 +21,7 @@ Description: Simulates data corresponding to three time series processes describ
 
 ```{r EBA}
 library(EFBA)
-library(fields)
+# library(fields)
 
 ###Simulate data for all simulated data settings described in paper
 set.seed(823819); #if you change the seed, you will get different results

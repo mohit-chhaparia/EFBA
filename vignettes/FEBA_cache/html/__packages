@@ -1,17 +1,9 @@
-base
-methods
-datasets
-utils
-grDevices
-graphics
-stats
 spam
 viridisLite
 RColorBrewer
 fields
 momentchi2
 Rcpp
-splines
 MASS
 pcaPP
 rainbow
@@ -21,7 +13,6 @@ deSolve
 fda
 shiny
 viridis
-grid
 gridExtra
 ggplot2
 shinyjs

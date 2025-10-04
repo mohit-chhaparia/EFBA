@@ -17,11 +17,11 @@ knitr::opts_chunk$set(
 
 ```{r simL3B}
 library(EFBA)
-library(RcppArmadillo)
-library(ggplot2)
-library(signal)
-library(fields)
-library(viridis)
+# library(RcppArmadillo)
+# library(ggplot2)
+# library(signal)
+# library(fields)
+# library(viridis)
 
 #output from msboot function is a list of the following 7 objects:
 #1) A list of matrices containing the test statistics over the Fourier frequencies for each W
