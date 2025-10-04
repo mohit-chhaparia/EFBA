@@ -30,6 +30,16 @@ arma::cx_cube ghat(arma::cx_cube fhat);
 arma::mat tsbootH0(arma::mat x, arma::mat rndraw, int ncore);
 arma::field<mat> dfstat(arma::cx_cube ghat, int N, int Wsel);
 
+//' ADD TITLE
+//' @description ADD DESCRIPTION
+//' @param nrep ADD DESCRIPTION
+//' @param x ADD DESCRIPTION
+//' @param Wsel ADD DESCRIPTION
+//' @param stdz ADD DESCRIPTION
+//' @param ncore ADD DESCRIPTION
+//' @return ADD DESCRIPTION
+//' @examples
+//' # ADD EXAMPLE
 //' @export
   // [[Rcpp::export]]
   Rcpp::List msboot(int nrep, arma::mat x, int Wsel, bool stdz, int ncore){
@@ -231,6 +241,14 @@ arma::mat tsbootH0(arma::mat x, arma::mat rndraws, int ncore){
 
 }
 
+//' ADD TITLE
+//' @description ADD DESCRIPTION
+//' @param X ADD DESCRIPTION
+//' @param NADD DESCRIPTION
+//' @param stdz ADD DESCRIPTION
+//' @return ADD DESCRIPTION
+//' @examples
+//' # ADD EXAMPLE
 //' @export
   // [[Rcpp::export]]
   arma::cx_cube fhat_lp(arma::mat X, int N, bool stdz){
@@ -419,6 +437,12 @@ arma::mat tsbootH0(arma::mat x, arma::mat rndraws, int ncore){
    return mtspec;
  }
 
+//' ADD TITLE
+//' @description ADD DESCRIPTION
+//' @param fhat_pmt ADD DESCRIPTION
+//' @return ADD DESCRIPTION
+//' @examples
+//' # ADD EXAMPLE
 //' @export
  // [[Rcpp::export]]
  arma::cx_cube ghat(arma::cx_cube fhat_pmt){

@@ -217,7 +217,6 @@ f3bS.sim <- function(nb,gsz,Ts,seed){
 #' 6- A list, containing the test statistics, critical values, p-values, and summary tables, for each frequency that was tested in each pass, in every component of the data.
 #' @export
 #' @importFrom stats fft
-#' @importFrom stats rnorm
 #' @examples
 #' nb=15; #number of basis functions used to generate white noise
 #' R=5; #number of points in functional domain

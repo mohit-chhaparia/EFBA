@@ -1,4 +1,4 @@
-# function to linearly detrend and standardize time series
+#' function to linearly detrend and standardize time series
 #' @noRd
 detrend <- function(vec,std){
   #remove linear trend for each interval
@@ -15,10 +15,10 @@ detrend <- function(vec,std){
   return(vec);
 }
 
-#ggplot settings
+#' ggplot settings
 #' @importFrom ggplot2 theme_gray
-#' @export
 #' @noRd
+#' @keywords internal
 hw <- function(){
   theme_gray()+ theme(
   plot.title=element_text(hjust=0.5),
@@ -36,11 +36,16 @@ hw <- function(){
   )
 }
 
-#function to detrend, standardize, and filter out low frequencies (below 1 Hz)
-#' @export
+#' function to detrend, standardize, and filter out low frequencies (below 1 Hz)
 #' @importFrom signal butter
 #' @importFrom signal filter
-#' @noRd
+#' @param sgnl ADD DESCRIPTION
+#' @param dsfrq ADD DESCRIPTION
+#' @param channels ADD DESCRIPTION
+#' @return ADD DESCRIPTION
+#' @examples
+#' # ADD EXAMPLE
+#' @export
 preprocess <- function(sgnl,dsfrq,channels){
 
   out <- sgnl[seq(1,nrow(sgnl),by=512/dsfrq),] # downsample to 64Hz
@@ -59,7 +64,11 @@ preprocess <- function(sgnl,dsfrq,channels){
   return(list(signal=out,Ts=Ts,N=N,ff=ff))
 }
 
-#function to simulate data for 5 different settings
+#' function to simulate data for 5 different settings
+#' @param t ADD DESCRIPTION
+#' @return ADD DESCRIPTION
+#' @examples
+#' # ADD EXAMPLE
 #' @export
 meba.simdata <- function(t){
 
