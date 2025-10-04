@@ -13,39 +13,21 @@ Authors@R: c(
     person("Mohit", "Chhaparia", role = "ctb")
   )
 Imports:
-    fields,
     momentchi2,
     Rcpp,
     stats,
     fda,
     shiny,
-    viridis,
     grid,
     gridExtra,
     ggplot2,
     shinyjs,
     plotly,
-    signal,
-    RcppArmadillo,
-    utils,
-    grDevices,
-    graphics
+    signal
 Depends:
+    R (>= 4.0.0),
     fields,
-    momentchi2,
-    Rcpp,
-    stats,
-    fda,
-    shiny,
-    viridis,
-    grid,
-    gridExtra,
-    ggplot2,
-    shinyjs,
-    plotly,
-    signal,
-    usethis,
-    RcppArmadillo
+    viridis
 RoxygenNote: 7.3.2
 SystemRequirements: OpenMP
 Suggests: 
@@ -54,7 +36,7 @@ Suggests:
     knitr,
     rmarkdown,
     testthat (>= 3.0.0),
-    viridis
+    usethis
 VignetteBuilder: knitr
 LinkingTo: 
     Rcpp,
