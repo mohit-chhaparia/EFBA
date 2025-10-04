@@ -26,13 +26,13 @@ Series.” Sundararajan, Bruce (2023)\]
 ## Installation
 
 You can install the development version of EFBA from
-[GitHub](https://github.com/mattByrom-tamu/EFBA)
+[GitHub](https://github.com/mohit-chhaparia/EFBA)
 
 ``` r
 # install.packages("devtools")
-devtools::install_github("mattByrom-tamu/EFBA")
+devtools::install_github("mohit-chhaparia/EFBA")
 # or
-devtools::install_github("mattByrom-tamu/EFBA", build_vignettes=TRUE)
+devtools::install_github("mohit-chhaparia/EFBA", build_vignettes=TRUE)
 ```
 
 ## Example
@@ -44,9 +44,9 @@ vignette
 
 ``` r
 library(EFBA)
-library(fields)
+#> Loading required package: fields
 #> Loading required package: spam
-#> Spam version 2.10-0 (2023-10-23) is loaded.
+#> Spam version 2.11-1 (2025-01-20) is loaded.
 #> Type 'help( Spam)' or 'demo( spam)' for a short introduction 
 #> and overview of this package.
 #> Help for individual functions is also obtained by adding the
@@ -57,38 +57,45 @@ library(fields)
 #> 
 #>     backsolve, forwardsolve
 #> Loading required package: viridisLite
+#> Loading required package: RColorBrewer
 #> 
 #> Try help(fields) to get started.
+#> Loading required package: viridis
+#> Warning: replacing previous import 'ggplot2::last_plot' by 'plotly::last_plot'
+#> when loading 'EFBA'
+#> Warning: replacing previous import 'plotly::filter' by 'signal::filter' when
+#> loading 'EFBA'
+# library(fields)
 
-###Simulate data for all simulated data settings described in paper
-set.seed(823819); #if you change the seed, you will get different results
-T <- 50000; #total length of time series 
-X <- eba.simdata(T=T);
+# Simulate data for all simulated data settings described in paper
+set.seed(823819) # If you change the seed, you will get different results
+T <- 50000 # Total length of time series 
+X <- eba.simdata(T = T)
 
-###Run search algorithm using FRESH statistic
-##Input parameters
-N <- 500; #number of observations per approximately stationary block
-K <- 15; #number of tapers to use in multitaper spectral estimator
-alpha <- 0.05; #significance level to use for testing partition points using FRESH statistic
-std <- FALSE; #should the variance of each stationary block be set to one across all blocks? (TRUE or FALSE)
+# Run search algorithm using FRESH statistic
+# Input parameters
+N <- 500 # Number of observations per approximately stationary block
+K <- 15 # Number of tapers to use in multitaper spectral estimator
+alpha <- 0.05 # Significance level to use for testing partition points using FRESH statistic
+std <- FALSE # Should the variance of each stationary block be set to one across all blocks? (TRUE or FALSE)
 
 # Call the search algorithm using the FRESH statistic 
-ebaout.bL <- eba.search(X=X$bL,N=N,K=K,std=std,alpha=alpha);
+ebaout.bL <- eba.search(X = X$bL , N = N , K = K , std = std , alpha = alpha)
 
-##See final partition of frequency space
-ebaout.bL$part.final; #three bands estimated
+# See final partition of frequency space
+ebaout.bL$part.final # Three bands estimated
 #> [1] 0.000 0.150 0.344 0.500
 
-ebaout.bL$log; #3 partition points tested in total, 2 determined to be significant
+ebaout.bL$log # 3 partition points tested in total, 2 determined to be significant
 #>   bhat.idx  bhat   bhat.Q    bhat.pval bhat.pval.th bhat.sig
 #> 1       76 0.150 61.32590 4.493191e-05 0.0008474576        1
 #> 2      173 0.344 33.97128 2.157472e-05 0.0005102041        1
 #> 3      235 0.468 76.96406 1.224938e-01 0.0010869565        0
 
-image.plot(x=ebaout.bL$mtspec$t,y=ebaout.bL$mtspec$f,z=t(ebaout.bL$mtspec$mtspec), 
-           axes = TRUE, col = inferno(256), zlim=c(0,10), 
-           xlab='Time',ylab='Hz',xaxs="i"); 
-abline(h=ebaout.bL$part.final[c(-1,-length(ebaout.bL$part.final))],col='green');
+image.plot(x = ebaout.bL$mtspec$t , y = ebaout.bL$mtspec$f , z = t(ebaout.bL$mtspec$mtspec) , 
+           axes = TRUE , col = inferno(256) , zlim = c(0 , 10) , 
+           xlab = 'Time' , ylab = 'Hz' , xaxs = "i") 
+abline(h = ebaout.bL$part.final[c(-1 , -length(ebaout.bL$part.final))] , col = 'green')
 ```
 
 <img src="man/figures/README-example-1.png" width="100%" />
@@ -100,6 +107,6 @@ ebaout.bL$flat
 #> [1,]     0.150 0.0000000
 #> [2,]     0.344 0.7715428
 #> [3,]     0.500 0.0000000
-#p-value for band (0.150,0.344] fails to reject hypothesis of flat spectrum
-#p-values for other frequency bands reject flat spectrum hypothesis
+# p-value for band (0.150 , 0.344] fails to reject hypothesis of flat spectrum
+# p-values for other frequency bands reject flat spectrum hypothesis
 ```
