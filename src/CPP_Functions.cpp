@@ -160,7 +160,7 @@ arma::field<mat> dfstat(arma::cx_cube ghat, int N, int Wsel);
         int stp=0;
         while(stp==0){
            for (int i=0; i < (int)srtidx.n_rows; i++){
-              if ((dfpval(srtidx(i))<thr) & (freqcand(W+srtidx(i),1)==1)){
+              if ((dfpval(srtidx(i))<thr) && (freqcand(W+srtidx(i),1)==1)){
                 freqsig(W+srtidx(i),1) = 1; //add frequency to partition points
                 freqcand(span(std::max(0,1+(int)srtidx(i)),std::min(Fs-1,2*W+(int)srtidx(i))),1).for_each( [](mat::elem_type& val) { val=0; } );; //scrub frequencies within W
                 Rprintf("\nfrequency identified is %f \n",freqsig(W+srtidx(i),0));
@@ -796,12 +796,24 @@ arma::vec hstepup(arma::vec pval,double alpha){
     sig=0;
   }
 
-  //return index of smallest frequency in rejected set and threshold
+  // Return index of smallest frequency in rejected set and threshold
+
+
+  // The following code is changed as it is deprecated
+  // arma::vec out(4);
+  // out(0)=conv_to<double>::from(idx);
+  // out(1)=conv_to<double>::from(pval(idx));
+  // out(2)=conv_to<double>::from(th);
+  // out(3)=sig;
+
   arma::vec out(4);
-  out(0)=conv_to<double>::from(idx);
-  out(1)=conv_to<double>::from(pval(idx));
-  out(2)=conv_to<double>::from(th);
-  out(3)=sig;
+
+  const arma::uword id = arma::as_scalar(idx);
+  out(0) = static_cast<double>(id);
+  out(1) = pval(id);
+  out(2) = arma::as_scalar(th);
+  out(3) = static_cast<double>(sig);
+
 
   return out;
 }
