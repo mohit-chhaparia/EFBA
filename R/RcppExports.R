@@ -23,7 +23,7 @@ tsbootH0 <- function(x, rndraws, ncore) {
 #' ADD TITLE
 #' @description ADD DESCRIPTION
 #' @param X ADD DESCRIPTION
-#' @param NADD DESCRIPTION
+#' @param N ADD DESCRIPTION
 #' @param stdz ADD DESCRIPTION
 #' @return ADD DESCRIPTION
 #' @examples

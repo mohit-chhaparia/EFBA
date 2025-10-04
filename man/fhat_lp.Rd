@@ -9,9 +9,9 @@ fhat_lp(X, N, stdz)
 \arguments{
 \item{X}{ADD DESCRIPTION}
 
-\item{stdz}{ADD DESCRIPTION}
+\item{N}{ADD DESCRIPTION}
 
-\item{NADD}{DESCRIPTION}
+\item{stdz}{ADD DESCRIPTION}
 }
 \value{
 ADD DESCRIPTION

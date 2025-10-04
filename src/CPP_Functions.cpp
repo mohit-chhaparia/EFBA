@@ -244,7 +244,7 @@ arma::mat tsbootH0(arma::mat x, arma::mat rndraws, int ncore){
 //' ADD TITLE
 //' @description ADD DESCRIPTION
 //' @param X ADD DESCRIPTION
-//' @param NADD DESCRIPTION
+//' @param N ADD DESCRIPTION
 //' @param stdz ADD DESCRIPTION
 //' @return ADD DESCRIPTION
 //' @examples
