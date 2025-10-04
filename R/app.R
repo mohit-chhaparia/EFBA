@@ -6,7 +6,7 @@
 #' @importFrom shinyjs useShinyjs
 #' @importFrom shinyjs hidden
 #' @importFrom shinyjs html
-#' @import plotly
+#' @importFrom plotly ggplotly plotlyOutput
 #' @importFrom fields image.plot
 #' @importFrom viridis inferno
 #' @importFrom grid viewport
@@ -17,7 +17,7 @@
 #' @importFrom gridExtra tableGrob
 #' @importFrom gridExtra grid.table
 #' @importFrom gridExtra grid.arrange
-#' @import ggplot2
+#' @importFrom ggplot2 ggplot geom_point geom_line geom_vline
 ui <- fluidPage(
   #theme = bslib::bs_theme(bootswatch = "pulse"),
   shinyjs::useShinyjs(),
