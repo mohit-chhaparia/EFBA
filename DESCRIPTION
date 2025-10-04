@@ -10,7 +10,7 @@ Authors@R: c(
     person("Scott", "Bruce", , "sabruce@tamu.edu", role = "aut"),
     person("Matt", "Byrom", , "matthew.james.byrom@tamu.edu", role = "cre"),
     person("Dylan", "Ward", role = "ctb"),
-    person("Mohit", "Chhaparia", role = "ctb")
+    person("Mohit", "Chhaparia", , "mohit_chhaparia@tamu.edu", role = "ctb")
   )
 Imports:
     momentchi2,
