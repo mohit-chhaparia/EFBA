@@ -40,7 +40,6 @@ Empirical Band Analysis using the FRESH statistic for linear time-varying dynami
 
 ```{r example}
 library(EFBA)
-# library(fields)
 
 # Simulate data for all simulated data settings described in paper
 set.seed(823819) # If you change the seed, you will get different results
