@@ -1,23 +1,14 @@
 
 # Set up Layout for Application
 #' @import shiny
-#' @importFrom shinyjs show
-#' @importFrom shinyjs hide
-#' @importFrom shinyjs useShinyjs
-#' @importFrom shinyjs hidden
-#' @importFrom shinyjs html
-#' @importFrom plotly ggplotly plotlyOutput
+#' @import ggplot2
+#' @importFrom shinyjs show hide useShinyjs hidden html
+#' @importFrom plotly ggplotly plotlyOutput plot_ly renderPlotly add_trace layout add_surface colorbar
 #' @importFrom fields image.plot
 #' @importFrom viridis inferno
-#' @importFrom grid viewport
-#' @importFrom grid grid.polygon
-#' @importFrom grid textGrob
-#' @importFrom grid grid.legend
-#' @importFrom grid gpar
-#' @importFrom gridExtra tableGrob
-#' @importFrom gridExtra grid.table
-#' @importFrom gridExtra grid.arrange
-#' @importFrom ggplot2 ggplot geom_point geom_line geom_vline
+#' @importFrom grid viewport grid.polygon textGrob grid.legend gpar
+#' @importFrom gridExtra tableGrob grid.table grid.arrange
+#' @importFrom magrittr %>%
 ui <- fluidPage(
   #theme = bslib::bs_theme(bootswatch = "pulse"),
   shinyjs::useShinyjs(),

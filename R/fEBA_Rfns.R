@@ -9,8 +9,7 @@
 #' @param seed The seed you wish to set, to ensure reproducibility
 #' @return A Ts x gsz dimension matrix, containing the simulated values
 #' @export
-#' @importFrom fda create.bspline.basis
-#' @importFrom fda eval.basis
+#' @importFrom fda create.bspline.basis eval.basis
 #' @importFrom stats rnorm
 #' @examples
 #' fws.sim(Ts = 200, seed = 234)
