@@ -1,4 +1,4 @@
-#include <RcppArmadillo.h>
+#include "EFBA/RcppArmadilloWrapper.hpp"
 // #include <RcppEigen.h>
 // #include <ParallelExecution.h>
 
