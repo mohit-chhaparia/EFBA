@@ -23,7 +23,8 @@ Imports:
     ggplot2,
     shinyjs,
     plotly,
-    signal
+    signal,
+    magrittr
 Depends:
     R (>= 4.0.0),
     fields,
