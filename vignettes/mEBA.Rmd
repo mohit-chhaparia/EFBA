@@ -8,8 +8,7 @@ vignette: >
 ---
 
 ```{r , include = FALSE}
-knitr::opts_chunk$set(collapse = TRUE , comment = "#>" , cache = TRUE , 
-                      cache.path = 'mEBA_cache/html/')
+knitr::opts_chunk$set(collapse = TRUE , comment = "#>" , cache = TRUE)
 ```
 
 ```{r simL3B}

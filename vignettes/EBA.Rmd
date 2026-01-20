@@ -8,8 +8,7 @@ vignette: >
 ---
 
 ```{r , include = FALSE}
-knitr::opts_chunk$set(collapse = TRUE , comment = "#>" , cache = TRUE , 
-                      cache.path = 'EBA_cache/html/')
+knitr::opts_chunk$set(collapse = TRUE , comment = "#>" , cache = TRUE)
 ```
 
 ["Empirical Frequency Band Analysis of Nonstationary Time Series." Bruce, Tang, Hall, Krafty (2020)](https://www.ncbi.nlm.nih.gov/pmc/articles/PMC8186526/)
