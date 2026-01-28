@@ -8,7 +8,8 @@ vignette: >
 ---
 
 ```{r setup , include = FALSE}
-knitr::opts_chunk$set(echo = TRUE , cache = TRUE)
+knitr::opts_chunk$set(echo = TRUE , cache = TRUE , 
+                      cache.path = 'ShinyAppUsage_cache/html/')
 ```
 
 This vignette serves to give a detailed explanation of how to use and interpret this shiny application that is seen within this package.
