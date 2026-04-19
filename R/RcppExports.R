@@ -3,35 +3,13 @@
 
 #' ADD TITLE
 #' @description ADD DESCRIPTION
-#' @param nrep ADD DESCRIPTION
-#' @param x ADD DESCRIPTION
-#' @param Wsel ADD DESCRIPTION
-#' @param stdz ADD DESCRIPTION
-#' @param ncore ADD DESCRIPTION
-#' @return ADD DESCRIPTION
-#' @examples
-#' # ADD EXAMPLE
-#' @export
-msboot <- function(nrep, x, Wsel, stdz, ncore) {
-    .Call(`_EFBA_msboot`, nrep, x, Wsel, stdz, ncore)
-}
-
-tsbootH0 <- function(x, rndraws, ncore) {
-    .Call(`_EFBA_tsbootH0`, x, rndraws, ncore)
-}
-
-#' ADD TITLE
-#' @description ADD DESCRIPTION
 #' @param X ADD DESCRIPTION
 #' @param N ADD DESCRIPTION
 #' @param stdz ADD DESCRIPTION
 #' @return ADD DESCRIPTION
 #' @examples
 #' # ADD EXAMPLE
-#' @export
-fhat_lp <- function(X, N, stdz) {
-    .Call(`_EFBA_fhat_lp`, X, N, stdz)
-}
+NULL
 
 #' Generate Multitaper Estimator of Power Spectrum for Functional Data
 #' @description
@@ -63,10 +41,7 @@ fhat_lp <- function(X, N, stdz) {
 #' @details
 #'  Every input must be either a Boolean or Numeric, as mentioned above \cr \cr
 #' For more information on how this data is simulated, consult the corresponding paper at https://arxiv.org/abs/2102.01784
-#' @export
-fhat_pmt <- function(X, N, K, Rsel, stdz) {
-    .Call(`_EFBA_fhat_pmt`, X, N, K, Rsel, stdz)
-}
+NULL
 
 #' ADD TITLE
 #' @description ADD DESCRIPTION
@@ -74,7 +49,35 @@ fhat_pmt <- function(X, N, K, Rsel, stdz) {
 #' @return ADD DESCRIPTION
 #' @examples
 #' # ADD EXAMPLE
+NULL
+
+#' ADD TITLE
+#' @description ADD DESCRIPTION
+#' @param nrep ADD DESCRIPTION
+#' @param x ADD DESCRIPTION
+#' @param Wsel ADD DESCRIPTION
+#' @param stdz ADD DESCRIPTION
+#' @param ncore ADD DESCRIPTION
+#' @return ADD DESCRIPTION
+#' @examples
+#' # ADD EXAMPLE
 #' @export
+msboot <- function(nrep, x, Wsel, stdz, ncore) {
+    .Call(`_EFBA_msboot`, nrep, x, Wsel, stdz, ncore)
+}
+
+tsbootH0 <- function(x, rndraws, ncore) {
+    .Call(`_EFBA_tsbootH0`, x, rndraws, ncore)
+}
+
+fhat_lp <- function(X, N, stdz) {
+    .Call(`_EFBA_fhat_lp`, X, N, stdz)
+}
+
+fhat_pmt <- function(X, N, K, Rsel, stdz) {
+    .Call(`_EFBA_fhat_pmt`, X, N, K, Rsel, stdz)
+}
+
 ghat <- function(fhat_pmt) {
     .Call(`_EFBA_ghat`, fhat_pmt)
 }

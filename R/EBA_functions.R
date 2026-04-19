@@ -26,7 +26,7 @@
 #' @importFrom stats sd
 #'
 #' @examples
-#' detrend(vec = eba.simdata(T= 500)$wn,std = FALSE)
+#' detrend(vec = eba.simdata(T= 50000)$wn,std = FALSE)
 detrend <- function(vec,std){
   #remove linear trend for each interval
   xmat <- cbind(matrix(1,length(vec),1),seq(1,length(vec),length=length(vec)));
