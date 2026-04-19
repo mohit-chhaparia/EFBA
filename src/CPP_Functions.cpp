@@ -84,7 +84,7 @@ arma::field<mat> dfstat(arma::cx_cube ghat, int N, int Wsel);
 
     int idxw = 0;
     for (int W = Wlo; W <= min(Whi,Wlo+Wsel*skp); W += skp){
-     if (idxw<Wsel){
+      if (idxw<Wsel){
         Rprintf("\nW is %i \n",W);
 
         arma::mat dfobs(Fs-2*W,1); //vector of test statistics
@@ -97,7 +97,7 @@ arma::field<mat> dfstat(arma::cx_cube ghat, int N, int Wsel);
 
         // 1. compute observed test statistics for each frequency
         Rprintf("Calculating observed test statistics\n");
-        #pragma omp parallel for num_threads(ncore)
+#pragma omp parallel for num_threads(ncore)
         for(int i = W; i < (Fs-W); i++){
           Rprintf("\r                                                                ");
           Rprintf("\rCalculating test statistic for Fourier frequency %i of %i",i-W+1,Fs-2*W);
@@ -123,8 +123,8 @@ arma::field<mat> dfstat(arma::cx_cube ghat, int N, int Wsel);
           arma::cx_cube gpse0 = ghat(pse0);
 
           //compute test statistics and pvalues for each frequency
-         #pragma omp parallel for num_threads(ncore)
-         for(int i = W; i < (Fs-W); i++){
+#pragma omp parallel for num_threads(ncore)
+          for(int i = W; i < (Fs-W); i++){
             double tmp2 = 0.0;
             arma::cx_mat tmp4(gpse0.n_cols,gpse0.n_slices,fill::zeros);
             for(int j = 0; j < W; j++){
@@ -133,7 +133,7 @@ arma::field<mat> dfstat(arma::cx_cube ghat, int N, int Wsel);
             }
             dfboot(i-W,r) = tmp2;
             dfpval(i-W) += (dfboot(i-W,r)>dfobs(i-W))/(nrep*1.0);
-            dfboot2(span(i-W),span(0,dfboot2.n_cols-1),span(r)) = trans(square(abs(sum(tmp4,1))));
+            dfboot2(arma::span(i-W),arma::span(0,dfboot2.n_cols-1),arma::span(r)) = trans(square(abs(sum(tmp4,1))));
             arma::mat tmp5 = dfboot2.subcube(i-W,0,r,i-W,dfboot2.n_cols-1,r);
             arma::umat tmp6 = tmp5 > dfobs2.submat(i-W,0,i-W,dfobs2.n_cols-1);
             arma::mat tmp7 = arma::conv_to<arma::mat>::from(tmp6);
@@ -142,13 +142,13 @@ arma::field<mat> dfstat(arma::cx_cube ghat, int N, int Wsel);
         }
 
         // 3. select frequency partition points
-        freqcand(span(0,W-1),1).for_each( [](mat::elem_type& val) { val=0; } ); //scrub frequencies at ends
-        freqcand(span((Fs-W),Fs-1),1).for_each( [](mat::elem_type& val) { val=0; } ); //scrub frequencies at ends
+        freqcand(arma::span(0,W-1),1).for_each( [](mat::elem_type& val) { val=0; } ); //scrub frequencies at ends
+        freqcand(arma::span((Fs-W),Fs-1),1).for_each( [](mat::elem_type& val) { val=0; } ); //scrub frequencies at ends
 
         //scrub W around existing cut points
         for (int i=0; i < Fs; i++){
           if (freqsig(i,1)==1){
-            freqcand(span(std::max(0,i-W),std::min(Fs-1,i+W)),1).for_each( [](mat::elem_type& val) { val=0; } ); //scrub frequencies within W
+            freqcand(arma::span(std::max(0,i-W),std::min(Fs-1,i+W)),1).for_each( [](mat::elem_type& val) { val=0; } ); //scrub frequencies within W
           }
         }
 
@@ -159,16 +159,16 @@ arma::field<mat> dfstat(arma::cx_cube ghat, int N, int Wsel);
 
         int stp=0;
         while(stp==0){
-           for (int i=0; i < (int)srtidx.n_rows; i++){
-              if ((dfpval(srtidx(i))<thr) && (freqcand(W+srtidx(i),1)==1)){
-                freqsig(W+srtidx(i),1) = 1; //add frequency to partition points
-                freqcand(span(std::max(0,1+(int)srtidx(i)),std::min(Fs-1,2*W+(int)srtidx(i))),1).for_each( [](mat::elem_type& val) { val=0; } );; //scrub frequencies within W
-                Rprintf("\nfrequency identified is %f \n",freqsig(W+srtidx(i),0));
-                Rprintf("p-value is %f and threshold is %f \n",dfpval(srtidx(i)),thr);
-              } else{
-                stp=1;
-              }
-           }
+          for (int i=0; i < (int)srtidx.n_rows; i++){
+            if ((dfpval(srtidx(i))<thr) && (freqcand(W+srtidx(i),1)==1)){
+              freqsig(W+srtidx(i),1) = 1; //add frequency to partition points
+              freqcand(arma::span(std::max(0,1+(int)srtidx(i)),std::min(Fs-1,2*W+(int)srtidx(i))),1).for_each( [](mat::elem_type& val) { val=0; } );; //scrub frequencies within W
+              Rprintf("\nfrequency identified is %f \n",freqsig(W+srtidx(i),0));
+              Rprintf("p-value is %f and threshold is %f \n",dfpval(srtidx(i)),thr);
+            } else{
+              stp=1;
+            }
+          }
         }
 
         // 4. save to fields
@@ -180,7 +180,7 @@ arma::field<mat> dfstat(arma::cx_cube ghat, int N, int Wsel);
         dfboot2all(idxw) = dfboot2; //observed test statistics for all frequencies
         dfpval2all(idxw) = join_horiz(freq.rows(W,Fs-W-1),dfpval2);
         idxw += 1;
-     }
+      }
     }
 
     Rcpp::List out=List::create(dfobsall,dfbootall,dfpvalall,freqsig,
@@ -213,7 +213,7 @@ arma::mat tsbootH0(arma::mat x, arma::mat rndraws, int ncore){
   }
 
   //calculate kernel weighted time-varying contemporaneous covariance (lag 0)
-  arma::cx_cube tcov(ns,ns,n);
+  arma::cube tcov(ns,ns,n,fill::zeros);
   // #pragma omp parallel for num_threads(ncore) collapse(3)
   for(int u = 0; u < ns; u++){
     for(int v = 0; v < ns; v++){
@@ -228,13 +228,22 @@ arma::mat tsbootH0(arma::mat x, arma::mat rndraws, int ncore){
   }
 
   //computes estimate of sigma(t/T)
-  arma::cx_cube tmp=tcov;
-  tmp.each_slice([&](arma::cx_mat& X){X=sqrtmat(X);},par);
+  arma::cube tmp(ns,ns,n,fill::zeros);
+  for (int k = 0; k < n; k++){
+    arma::mat sym = 0.5 * (tcov.slice(k) + tcov.slice(k).t());
+    arma::vec eigval;
+    arma::mat eigvec;
+    if (!arma::eig_sym(eigval, eigvec, sym)){
+      stop("tsbootH0: eig_sym failed while computing covariance square root.");
+    }
+    eigval.for_each([](double& v) { if (v < 0.0) v = 0.0; });
+    tmp.slice(k) = eigvec * diagmat(sqrt(eigval)) * eigvec.t();
+  }
 
   //computes estimate of time-varying WN
   arma::mat tvwnout(n,ns,fill::zeros);
   for(int i = 0; i < n; i++){
-    tvwnout.row(i) = trans(real(tmp.slice(i)*rndraws.col(i)));
+    tvwnout.row(i) = trans(tmp.slice(i) * rndraws.col(i));
   }
 
   return tvwnout;
@@ -249,73 +258,73 @@ arma::mat tsbootH0(arma::mat x, arma::mat rndraws, int ncore){
 //' @return ADD DESCRIPTION
 //' @examples
 //' # ADD EXAMPLE
-//' @export
-  // [[Rcpp::export]]
-  arma::cx_cube fhat_lp(arma::mat X, int N, bool stdz){
-    //inputs
-    //X time series with T rows and R columns (column vectors are components of MV time series)
-    //N is neighborhood for local periodogram (must be even)
+ //' @export
+ // [[Rcpp::export]]
+ arma::cx_cube fhat_lp(arma::mat X, int N, bool stdz){
+   //inputs
+   //X time series with T rows and R columns (column vectors are components of MV time series)
+   //N is neighborhood for local periodogram (must be even)
 
-    //initialization
-    int R=X.n_cols; //number of components of MV time series
-    int Ts=X.n_rows; //total length of time series
-    int Fs=floor(N/2)+1; //number of Fourier frequencies for local periodogram
-    int Nh=floor(N/2); //half width of neighborhood
-    arma::mat xmat=join_horiz(ones(N,1),linspace(1,N,N));
-    arma::mat vec(N,1);
-    arma::mat linfit(2,1);
-    arma::cube Xnew(N,Ts,R);
-    arma::cx_mat fftmat(N,R);
-    arma::cx_cube pgram(Fs,pow(R,2),Ts,fill::zeros);
+   //initialization
+   int R=X.n_cols; //number of components of MV time series
+   int Ts=X.n_rows; //total length of time series
+   int Fs=floor(N/2)+1; //number of Fourier frequencies for local periodogram
+   int Nh=floor(N/2); //half width of neighborhood
+   arma::mat xmat=join_horiz(ones(N,1),linspace(1,N,N));
+   arma::mat vec(N,1);
+   arma::mat linfit(2,1);
+   arma::cube Xnew(N,Ts,R);
+   arma::cx_mat fftmat(N,R);
+   arma::cx_cube pgram(Fs,pow(R,2),Ts,fill::zeros);
 
-    //throw error if N is not even or longer than T
-    ostringstream text;
-    if(N%2!=0){
-      text << "N should be a positive even integer less than the length of the time series.";
-      stop(text.str());
-    }
-    if(N>Ts){
-      text << "N should be a positive even integer less than the length of the time series.";
-      stop(text.str());
-    }
+   //throw error if N is not even or longer than T
+   ostringstream text;
+   if(N%2!=0){
+     text << "N should be a positive even integer less than the length of the time series.";
+     stop(text.str());
+   }
+   if(N>Ts){
+     text << "N should be a positive even integer less than the length of the time series.";
+     stop(text.str());
+   }
 
-    //compute local periodogram estimates
-    for(int i=0;i<Ts;i++){
-      for (int j=0;j<R;j++){
+   //compute local periodogram estimates
+   for(int i=0;i<Ts;i++){
+     for (int j=0;j<R;j++){
 
-        //linearly detrend
-        if (i<Nh){
-          vec=X(span(0,N-1),j);
-        } else if(i>=Ts-Nh){
-          vec=X(span(Ts-N,Ts-1),j);
-        } else{
-          vec=X(span(i-Nh+1,i+Nh),j);
-        }
+       //linearly detrend
+       if (i<Nh){
+         vec=X(arma::span(0,N-1),j);
+       } else if(i>=Ts-Nh){
+         vec=X(arma::span(Ts-N,Ts-1),j);
+       } else{
+         vec=X(arma::span(i-Nh+1,i+Nh),j);
+       }
 
-        linfit=inv(xmat.t()*xmat)*xmat.t()*vec;
-        vec=vec-xmat*linfit;
+       linfit=inv(xmat.t()*xmat)*xmat.t()*vec;
+       vec=vec-xmat*linfit;
 
-        //standard to unit variance
-        if(stdz){vec=vec/repelem(stddev(vec),N,1);}
+       //standard to unit variance
+       if(stdz){vec=vec/repelem(stddev(vec),N,1);}
 
-        //save to Xnew
-        Xnew(span(0,N-1),span(i,i),span(j,j))=vec;
+       //save to Xnew
+       Xnew(arma::span(0,N-1),arma::span(i,i),arma::span(j,j))=vec;
 
-        //fft
-        fftmat.col(j)=fft(vec)/sqrt(2.0*M_PI*N);
-      }
+       //fft
+       fftmat.col(j)=fft(vec)/sqrt(2.0*M_PI*N);
+     }
 
-      arma::cx_mat tmp(Fs,pow(R,2));
+     arma::cx_mat tmp(Fs,pow(R,2));
 
-      //periodogram estimator (vectorized)
-      for(int f=0;f<Fs;f++){
-        tmp.row(f)=strans(vectorise(strans(fftmat.row(f))*conj(fftmat.row(f))));
-      }
-      pgram.slice(i) = tmp;
-    }
+     //periodogram estimator (vectorized)
+     for(int f=0;f<Fs;f++){
+       tmp.row(f)=strans(vectorise(strans(fftmat.row(f))*conj(fftmat.row(f))));
+     }
+     pgram.slice(i) = tmp;
+   }
 
-    return pgram;
-  }
+   return pgram;
+ }
 
 //' Generate Multitaper Estimator of Power Spectrum for Functional Data
 //' @description
@@ -347,8 +356,8 @@ arma::mat tsbootH0(arma::mat x, arma::mat rndraws, int ncore){
 //' @details
 //'  Every input must be either a Boolean or Numeric, as mentioned above \cr \cr
 //' For more information on how this data is simulated, consult the corresponding paper at https://arxiv.org/abs/2102.01784
-//' @export
-// [[Rcpp::export]]
+ //' @export
+ // [[Rcpp::export]]
  arma::cx_cube fhat_pmt(arma::mat X, int N, int K, int Rsel, bool stdz){
 
    //reduce components of X if Rsel<R
@@ -398,7 +407,7 @@ arma::mat tsbootH0(arma::mat x, arma::mat rndraws, int ncore){
    for(int i=0;i<B;i++){
      for (int j=0;j<R;j++){
        //linearly detrend
-       vec=Xnew(span(i*N+drp,(i+1)*N+drp-1),j);
+       vec=Xnew(arma::span(i*N+drp,(i+1)*N+drp-1),j);
        linfit=inv(xmat.t()*xmat)*xmat.t()*vec;
        vec=vec-xmat*linfit;
        //standard to unit variance
@@ -443,7 +452,7 @@ arma::mat tsbootH0(arma::mat x, arma::mat rndraws, int ncore){
 //' @return ADD DESCRIPTION
 //' @examples
 //' # ADD EXAMPLE
-//' @export
+ //' @export
  // [[Rcpp::export]]
  arma::cx_cube ghat(arma::cx_cube fhat_pmt){
 
@@ -807,13 +816,10 @@ arma::vec hstepup(arma::vec pval,double alpha){
   // out(3)=sig;
 
   arma::vec out(4);
-
-  const arma::uword id = arma::as_scalar(idx);
-  out(0) = static_cast<double>(id);
-  out(1) = pval(id);
-  out(2) = arma::as_scalar(th);
-  out(3) = static_cast<double>(sig);
-
+  out(0)=arma::as_scalar(arma::conv_to<arma::vec>::from(idx));
+  out(1)=arma::as_scalar(pval(idx));
+  out(2)=arma::as_scalar(th);
+  out(3)=sig;
 
   return out;
 }
