@@ -10,11 +10,23 @@ meba.simdata(t)
 \item{t}{ADD DESCRIPTION}
 }
 \value{
-ADD DESCRIPTION
+A named list containing:
+\describe{
+  \item{wn}{DESCRIPTION}
+  \item{bL}{DESCRIPTION}
+  \item{bS}{DESCRIPTION}
+  \item{bL2f15}{DESCRIPTION}
+  \item{bL2f35}{DESCRIPTION}
+  \item{bS2f15}{DESCRIPTION}
+  \item{bS2f35}{DESCRIPTION}
+}
 }
 \description{
 function to simulate data for 5 different settings
 }
 \examples{
-# ADD EXAMPLE
+set.seed(836583)
+sim <- meba.simdata(400)
+names(sim)
+sapply(sim, length)
 }

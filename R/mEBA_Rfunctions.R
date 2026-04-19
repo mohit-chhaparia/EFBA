@@ -78,9 +78,21 @@ preprocess <- function(sgnl,dsfrq,channels){
 
 #' function to simulate data for 5 different settings
 #' @param t ADD DESCRIPTION
-#' @return ADD DESCRIPTION
+#' @return A named list containing:
+#' \describe{
+#'   \item{wn}{DESCRIPTION}
+#'   \item{bL}{DESCRIPTION}
+#'   \item{bS}{DESCRIPTION}
+#'   \item{bL2f15}{DESCRIPTION}
+#'   \item{bL2f35}{DESCRIPTION}
+#'   \item{bS2f15}{DESCRIPTION}
+#'   \item{bS2f35}{DESCRIPTION}
+#' }
 #' @examples
-#' # ADD EXAMPLE
+#' set.seed(836583)
+#' sim <- meba.simdata(400)
+#' names(sim)
+#' sapply(sim, length)
 #' @export
 meba.simdata <- function(t){
 
