@@ -2,7 +2,7 @@
 % Please edit documentation in R/EBA_functions.R
 \name{eba.simdata}
 \alias{eba.simdata}
-\title{Simulate time series data}
+\title{Simulate univariate time-series data for the EBA scenarios}
 \usage{
 eba.simdata(T)
 }
@@ -10,7 +10,12 @@ eba.simdata(T)
 \item{T}{numeric/integer with total length of intended time series}
 }
 \value{
-List of 3 frequency series
+List of 3 frequency series:
+\describe{
+  \item{wn}{DESCRIPTION}
+  \item{bL}{DESCRIPTIION}
+  \item{bS}{DESCRIPTION}
+}
 }
 \description{
 The function eba.simdata will simulate a time series of the specified length 'T'.
@@ -22,5 +27,8 @@ bl: linear example used in paper \cr \cr
 bs: sinusoidal example used in paper \cr \cr
 }
 \examples{
-eba.simdata(T=500)
+sim <- eba.simdata(T = 1000)
+names(sim)
+sapply(sim, length)
+sim
 }

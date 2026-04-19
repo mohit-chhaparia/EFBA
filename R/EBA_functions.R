@@ -433,17 +433,25 @@ eba.search <- function(X,N,K,std,alpha){
 
 
 ###function to simulate data for 3 different settings
-#' Simulate time series data
+#' Simulate univariate time-series data for the EBA scenarios
 #' @description
 #' The function eba.simdata will simulate a time series of the specified length 'T'.
 #'
 #' @param T numeric/integer with total length of intended time series
-#' @return List of 3 frequency series
+#' @return List of 3 frequency series:
+#' \describe{
+#'   \item{wn}{DESCRIPTION}
+#'   \item{bL}{DESCRIPTIION}
+#'   \item{bS}{DESCRIPTION}
+#' }
 #' @export
 #' @importFrom stats fft
 #' @importFrom stats rnorm
 #' @examples
-#' eba.simdata(T=500)
+#' sim <- eba.simdata(T = 1000)
+#' names(sim)
+#' sapply(sim, length)
+#' sim
 #' @details
 #' Increasing T will increase the length of the time series.Bellow are brief explanations of each of the returned time series. \cr \cr
 #' wn: white noise, random normal distribution with mean of 0 and var = 1 \cr \cr
