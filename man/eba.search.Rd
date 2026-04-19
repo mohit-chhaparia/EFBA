@@ -38,5 +38,7 @@ How to run the EBA with the FRESH statistic \cr  \cr
 Once you have created the inputs pass them into the 'eba.search' function. You can refer to the EBA vignette for an example using demo data. \cr \cr
 }
 \examples{
-eba.search(X = eba.simdata(T= 500)$wn, N = 50, K = 10, std = FALSE, alpha = .05)
+set.seed(823819)
+sim <- eba.simdata(T = 1000)
+eba.search(X = sim$wn, N = 100, K = 10, std = FALSE, alpha = .05)
 }

@@ -292,7 +292,9 @@ eba.flat <- function(f,partfinal,ghat,covg){
 #' @export
 #' @importFrom momentchi2 sw
 #' @examples
-#' eba.search(X = eba.simdata(T= 500)$wn, N = 50, K = 10, std = FALSE, alpha = .05)
+#' set.seed(823819)
+#' sim <- eba.simdata(T = 1000)
+#' eba.search(X = sim$wn, N = 100, K = 10, std = FALSE, alpha = .05)
 #' @details
 #' How to run the EBA with the FRESH statistic \cr  \cr
 #' 'X' is a vector containing a realization of the time series process you wish to analyze \cr  \cr
