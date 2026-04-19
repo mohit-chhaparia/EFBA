@@ -3,8 +3,8 @@
 #' @description
 #' The function fws.sim will simulate a functional time series of white noise data
 #'
-#' @param nb Number of basis functions to use when simulating the data. Default value is 15
-#' @param gsz Number of points along the functional domain where the basis functions will be evaluated. Default value is 20
+#' @param nb Number of basis functions to use when simulating the data. Default value is `15`
+#' @param gsz Number of points along the functional domain where the basis functions will be evaluated. Default value is `20`
 #' @param Ts Numeric/integer with total length of intended time series
 #' @param seed The seed you wish to set, to ensure reproducibility
 #' @return A Ts x gsz dimension matrix, containing the simulated values
