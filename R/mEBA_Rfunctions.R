@@ -39,13 +39,25 @@ hw <- function(){
 #' function to detrend, standardize, and filter out low frequencies (below 1 Hz)
 #' @importFrom signal butter
 #' @importFrom signal filter
-#' @param sgnl ADD DESCRIPTION
-#' @param dsfrq ADD DESCRIPTION
-#' @param channels ADD DESCRIPTION
-#' @return ADD DESCRIPTION
+#' @param sgnl Numeric matrix with rows as time points and columns as channels.
+#' @param dsfrq Target downsample frequency.
+#' @param channels Character vector of channel names, one per column in `sgnl`.
+#' @return A list with:
+#' \describe{
+#'   \item{signal}{DESCRIPTION}
+#'   \item{Ts}{DESCRIPTION}
+#'   \item{N}{DESCRIPTION}
+#'   \item{ff}{DESCRIPTION}
+#' }
 #' @examples
-#' # ADD EXAMPLE
+#' set.seed(836492)
+#' x <- matrix(rnorm(5120), ncol = 4)
+#' out <- preprocess(x, dsfrq = 64, channels = paste0("C", 1:4))
+#' names(out)
+#' dim(out$signal)
 #' @export
+#' @importFrom signal butter
+#' @importFrom signal filter
 preprocess <- function(sgnl,dsfrq,channels){
 
   out <- sgnl[seq(1,nrow(sgnl),by=512/dsfrq),] # downsample to 64Hz
