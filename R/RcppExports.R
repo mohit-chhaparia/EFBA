@@ -3,14 +3,6 @@
 
 #' ADD TITLE
 #' @description ADD DESCRIPTION
-#' @param fhat_pmt ADD DESCRIPTION
-#' @return ADD DESCRIPTION
-#' @examples
-#' # ADD EXAMPLE
-NULL
-
-#' ADD TITLE
-#' @description ADD DESCRIPTION
 #' @param nrep ADD DESCRIPTION
 #' @param x ADD DESCRIPTION
 #' @param Wsel ADD DESCRIPTION
@@ -76,6 +68,13 @@ fhat_pmt <- function(X, N, K, Rsel, stdz) {
     .Call(`_EFBA_fhat_pmt`, X, N, K, Rsel, stdz)
 }
 
+#' ADD TITLE
+#' @description ADD DESCRIPTION
+#' @param fhat_pmt ADD DESCRIPTION
+#' @return ADD DESCRIPTION
+#' @examples
+#' # ADD EXAMPLE
+#' @export
 ghat <- function(fhat_pmt) {
     .Call(`_EFBA_ghat`, fhat_pmt)
 }

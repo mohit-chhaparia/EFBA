@@ -452,7 +452,7 @@ arma::mat tsbootH0(arma::mat x, arma::mat rndraws, int ncore){
 //' @return ADD DESCRIPTION
 //' @examples
 //' # ADD EXAMPLE
- //' @export
+//' @export
  // [[Rcpp::export]]
  arma::cx_cube ghat(arma::cx_cube fhat_pmt){
 
