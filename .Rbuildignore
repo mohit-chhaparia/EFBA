@@ -6,3 +6,4 @@
 ^README\.Rmd$
 ^mEBA_functions\.R$
 ^mEBA_Rfunctions\.R$
+^shinyapps/
